@@ -7,4 +7,4 @@ export const fetchClimbs = () => {
         dispatch({ type: 'ADD_CLIMBS', climbs: data })
       })
     }
-  }
+}

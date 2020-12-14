@@ -19,6 +19,9 @@ export default class NavBar extends React.Component{
                         <li className="nav-item">
                             <a className="nav-link" href="#">My Climbs</a>
                         </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
