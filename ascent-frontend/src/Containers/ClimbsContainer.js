@@ -1,16 +1,40 @@
 import React from 'react'
 import ClimbCard from '../Components/ClimbCard'
+import {connect} from 'react-redux'
+import {fetchClimbs} from '../actions/climbActions'
 
-export default class ClimbContainer extends React.Component{
+class ClimbContainer extends React.Component{
+    componentDidMount(){
+        this.props.fetchClimbs()
+    }
+    
     renderClimbs = () => {
-        return <ClimbCard />
+        return this.props.climbs.map(climb => <ClimbCard key={climb.id} {...climb}/>)
     }
     render(){
         return(
-            <div>
-                <h1>Climb Container</h1>
-                {this.renderClimbs()}
+            <div className="container d-flex">
+                <div className="row">
+                    <div className="col-12">
+                        {this.renderClimbs()}
+                    </div>
+                </div>
             </div>
         )
     }
 }
+
+const msp = state => {
+    return {
+        climbs: state.climbs,
+        loading: state.loading
+    }
+}
+
+const mdp = dispatch => {
+    return {
+        fetchClimbs: () => dispatch(fetchClimbs())
+    }
+}
+
+export default connect(msp,mdp)(ClimbContainer);

@@ -10,8 +10,8 @@ export default class App extends React.Component{
     return(
       <div>
         <NavBar/>
-        <ClimbContainer/>
         <SearchForm/>
+        <ClimbContainer/>
         <Footer/> 
       </div>
       

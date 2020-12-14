@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.climb-card {
+  height: 35rem;
+  max-width: 25%;
+  margin: 0px;
+}
+
+.climb-img {
+  height: 20rem;
+}
