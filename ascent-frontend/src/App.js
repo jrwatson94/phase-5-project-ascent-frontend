@@ -8,6 +8,7 @@ import Home from './Components/Home'
 import { BrowserRouter as Router, Route , Switch, withRouter} from 'react-router-dom'
 import Signup from './auth/SignUp'
 import Login from './auth/LogIn'
+import MyClimbs from './Containers/MyClimbs'
 
 
 class App extends React.Component{
@@ -61,6 +62,8 @@ class App extends React.Component{
           <Route exact path="/" component={Home}/>
           <Route exact path="/search" component={SearchForm}/>
           <Route exact path="/climbs" component={ ClimbContainer } />
+          <Route exact path="/my-climbs"render={() => <MyClimbs user= {this.state.user}/>}/>
+          
 
           <Footer/> 
         </div>
