@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react'
 import NavBar from './Components/NavBar'
-import ClimbContainer from './Containers/ClimbsContainer'
+import ClimbContainer from './Containers/ClimbContainer'
 import SearchForm from './Components/SearchForm'
 import Footer from './Components/Footer'
 import Home from './Components/Home'
@@ -60,10 +60,9 @@ class App extends React.Component{
           <Route exact path="/signup"render={() => <Signup submitHandler = {this.signupSubmitHandler}/>}/>
           <Route exact path="/login" render={() => <Login loginHandler = {this.loginHandler}/>}/>
           <Route exact path="/" component={Home}/>
-          <Route exact path="/search" component={SearchForm}/>
+          <Route exact path="/search" render={() => <SearchForm user={this.state.user}/>}/>
           <Route exact path="/climbs" render= {() => <ClimbContainer token={localStorage.token} user={this.state.user}/>} />
           <Route exact path="/my-climbs"render={() => <MyClimbs token={localStorage.token} user= {this.state.user}/>}/>
-          <Footer/> 
         </div>
       </Switch>
       

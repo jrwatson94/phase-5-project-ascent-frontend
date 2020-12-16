@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 export default class ClimbCard extends React.Component{
     state ={
         data: ""
@@ -45,7 +46,7 @@ export default class ClimbCard extends React.Component{
             <div className="climb-card card float-right">
                 <img className="card-img-top climb-img" src={this.props.image}></img>
                 <div className="card-body">
-                    <h4 className="card-title">{this.props.name}</h4>
+                    <a href={this.props.url}><h4 className="card-title">{this.props.name}</h4></a>
                     <h5 className="rating">Rating: <strong>{this.props.rating}</strong></h5>
                     <p>Type: {this.props.climb_type}</p>
                     <p>Difficulty: {this.props.difficulty}</p>

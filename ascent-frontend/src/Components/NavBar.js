@@ -16,13 +16,16 @@ export default class NavBar extends React.Component{
                             <NavLink to="/" className="nav-link" href="#">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Info</a>
+                            <NavLink className="nav-link" to="/search">Search</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/climbs">All Climbs</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/my-climbs">My Climbs</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Logout</a>
+                            <a className="nav-link" href="/">Logout</a>
                         </li>
                     </ul>
                 </div>
