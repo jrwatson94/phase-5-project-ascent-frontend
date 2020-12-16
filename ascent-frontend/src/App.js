@@ -61,10 +61,8 @@ class App extends React.Component{
           <Route exact path="/login" render={() => <Login loginHandler = {this.loginHandler}/>}/>
           <Route exact path="/" component={Home}/>
           <Route exact path="/search" component={SearchForm}/>
-          <Route exact path="/climbs" component={ ClimbContainer } />
-          <Route exact path="/my-climbs"render={() => <MyClimbs user= {this.state.user}/>}/>
-          
-
+          <Route exact path="/climbs" render= {() => <ClimbContainer token={localStorage.token} user={this.state.user}/>} />
+          <Route exact path="/my-climbs"render={() => <MyClimbs token={localStorage.token} user= {this.state.user}/>}/>
           <Footer/> 
         </div>
       </Switch>

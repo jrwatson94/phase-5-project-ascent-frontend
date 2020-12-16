@@ -9,7 +9,7 @@ class ClimbContainer extends React.Component{
     }
     
     renderClimbs = () => {
-        return this.props.climbs.map(climb => <ClimbCard key={climb.id} {...climb}/>)
+        return this.props.climbs.map(climb => <ClimbCard key={climb.id} token={this.props.token} user={this.props.user} {...climb}/>)
     }
     render(){
         return(

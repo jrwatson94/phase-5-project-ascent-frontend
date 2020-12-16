@@ -18,7 +18,7 @@ class MyClimbs extends React.Component{
 
     renderClimbs = () => {
         if (this.state.userData){
-            return this.state.userData.climbs.map(climb => <ClimbCard {...climb}/>)
+            return this.state.userData.climbs.map(climb => <ClimbCard token ={this.props.token} user={this.props.user} {...climb}/>)
         }
     }
 
