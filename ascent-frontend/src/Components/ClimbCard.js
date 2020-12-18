@@ -3,9 +3,10 @@ import React from 'react'
 
 export default class ClimbCard extends React.Component{
     state ={
-        data: ""
-
+        data: "",
+        completed: this.props.completed
     }
+
     addClickHandler = () => {
         let data ={
             user_id: this.props.user.id,
@@ -16,7 +17,6 @@ export default class ClimbCard extends React.Component{
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-
             },
             body: JSON.stringify(data)
         })
@@ -27,20 +27,31 @@ export default class ClimbCard extends React.Component{
             })
         })
     }
+
     deleteClickHandler = () => {
-        let foundUserClimb
-        fetch(`http://localhost:3000/user_climbs`)
-        .then(r=> r.json())
-        .then(userClimbs => {
-            foundUserClimb = userClimbs.filter(userClimb => userClimb.user_id === this.props.user.id && userClimb.climb_id === this.props.id)
-            console.log(foundUserClimb)
-        })
-        .then( () => {
-            fetch(`http://localhost:3000/user_climbs/${foundUserClimb[0].id}`, {
-                method: "DELETE"
-            })
+        const userClimb = this.props.user_climbs.filter(user_climb => user_climb.user_id === this.props.user.id)
+        this.props.deleteClimb(userClimb)
+    }
+
+    completeClickHandler = () => {
+        const userClimb = this.props.user_climbs.filter(user_climb => user_climb.user_id === this.props.user.id)
+        this.props.completeClimb(userClimb)
+        this.setState({
+            completed: true
         })
     }
+
+    renderCompleteButton = () => {
+        if (this.props.completed != undefined){
+            return (
+                <>
+                <button onClick={this.deleteClickHandler} className="btn">Delete</button>
+                <button onClick={this.completeClickHandler} className="btn">{this.state.completed ? "Complete ✅" : "Mark as Complete"}</button>
+                </>
+            )
+        }
+    }
+
     render(){
         return(
             <div className="climb-card card float-right">
@@ -52,7 +63,7 @@ export default class ClimbCard extends React.Component{
                     <p>Difficulty: {this.props.difficulty}</p>
                     <p>Location: {this.props.state}, {this.props.climbing_area}</p>
                     <button onClick={this.addClickHandler} className="btn">Add To MyClimbs</button>
-                    <button onClick={this.deleteClickHandler} className="btn">Delete</button>
+                    {this.renderCompleteButton()}
                 </div>
             </div>
         )
