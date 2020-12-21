@@ -1,7 +1,9 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {deleteClimb, completeClimb} from '../actions/climbActions'
 
 
-export default class ClimbCard extends React.Component{
+class ClimbCard extends React.Component{
     state ={
         data: "",
         completed: this.props.completed
@@ -9,7 +11,7 @@ export default class ClimbCard extends React.Component{
 
     addClickHandler = () => {
         let data ={
-            user_id: this.props.user.id,
+            user_id: localStorage.user_id,
             climb_id: this.props.id
         }
         fetch('http://localhost:3000/user_climbs', {
@@ -20,21 +22,15 @@ export default class ClimbCard extends React.Component{
             },
             body: JSON.stringify(data)
         })
-        .then(r => r.json())
-        .then(data => {
-            this.setState({
-                data: data
-            })
-        })
     }
 
     deleteClickHandler = () => {
-        const userClimb = this.props.user_climbs.filter(user_climb => user_climb.user_id === this.props.user.id)
+        const userClimb = this.props.user_climbs.filter(user_climb => user_climb.user_id === parseInt(localStorage.user_id))
         this.props.deleteClimb(userClimb)
     }
 
     completeClickHandler = () => {
-        const userClimb = this.props.user_climbs.filter(user_climb => user_climb.user_id === this.props.user.id)
+        const userClimb = this.props.user_climbs.filter(user_climb => user_climb.user_id === parseInt(localStorage.user_id))
         this.props.completeClimb(userClimb)
         this.setState({
             completed: true
@@ -69,3 +65,13 @@ export default class ClimbCard extends React.Component{
         )
     }
 }
+
+const mdp = dispatch => {
+    return {
+        deleteClimb: userClimb => dispatch(deleteClimb(userClimb)),
+        completeClimb: userClimb => dispatch(completeClimb(userClimb))
+    }
+}
+
+
+export default connect(null,mdp)(ClimbCard);

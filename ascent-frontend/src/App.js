@@ -47,6 +47,7 @@ class App extends React.Component{
       .then(r => r.json())
       .then(loggedInUser => {
         localStorage.setItem("token", loggedInUser.jwt)
+        localStorage.setItem("user_id",loggedInUser.user.id)
         this.setState({user:loggedInUser.user}
           , () => this.props.history.push('/climbs')
           )

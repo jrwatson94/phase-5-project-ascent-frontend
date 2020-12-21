@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import ClimbCard from '../Components/ClimbCard'
+import {connect} from 'react-redux'
+import {fetchMyClimbs} from '../actions/climbActions'
 
 class MyClimbs extends React.Component{
     state= {
@@ -8,63 +10,22 @@ class MyClimbs extends React.Component{
     }
 
     componentDidMount(){
-        fetch(`http://localhost:3000/users/${this.props.user.id}`)
-        .then(r=> r.json())
-        .then(user => {
-            this.setState({
-                ...this.state,
-                userData: user
-            })
-        })
+        this.props.fetchMyClimbs(localStorage.user_id)
     }
 
     renderClimbs = () => {
-        if (this.state.userData){
-            let climbArray = this.state.userData.climbs.map(climb => {
-                let user_climb = climb.user_climbs.filter(user_climb => user_climb.user_id === this.props.user.id)
-                return <ClimbCard 
-                    token ={this.props.token} 
-                    user={this.props.user} {...climb} 
-                    completed={user_climb[0].completed} 
-                    completeClimb={this.completeClimb}
-                    deleteClimb = {this.deleteClimb}
-                />
-            })
-            return climbArray
-        }
-
-    }
-
-    completeClimb = (userClimb) => {
-        const data = {
-            user_id: this.props.user.id,
-            climb_id: userClimb[0].climb_id,
-            completed: true
-        }
-        fetch(`http://localhost:3000/user_climbs/${userClimb[0].id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Accepts": "application/json"
-            },
-            body: JSON.stringify(data)
+        let climbArray = this.props.my_climbs.map(climb => {
+            let user_climb = climb.user_climbs.filter(user_climb => user_climb.user_id === parseInt(localStorage.user_id))
+            return <ClimbCard 
+                token ={this.props.token} 
+                user={this.props.user} {...climb} 
+                completed={user_climb[0].completed} 
+            />
         })
+        return climbArray
+        
 
     }
-
-    deleteClimb = (userClimb) => {
-        fetch(`http://localhost:3000/user_climbs/${userClimb[0].id}`, {
-                method: "DELETE"
-        })
-        // .then(r=> r.json())
-        // .then(() => {
-        //     this.setState({
-        //         ...this.state,
-        //         render: true
-        //     })
-        // })
-    }
-
     render(){
         return(
             <div className="container">
@@ -75,4 +36,16 @@ class MyClimbs extends React.Component{
     }
 }
 
-export default MyClimbs
+const msp = state => {
+    return{
+        my_climbs: state.my_climbs
+    }
+}
+
+const mdp = dispatch => {
+    return {
+        fetchMyClimbs: user_id => dispatch(fetchMyClimbs(user_id))
+    }
+}
+
+export default connect(msp,mdp)(MyClimbs);
