@@ -38,7 +38,7 @@ class ClimbCard extends React.Component{
     }
 
     renderCompleteButton = () => {
-        if (this.props.completed != undefined){
+        if (this.props.completed !== undefined){
             return (
                 <>
                 <button onClick={this.deleteClickHandler} className="btn">Delete</button>
