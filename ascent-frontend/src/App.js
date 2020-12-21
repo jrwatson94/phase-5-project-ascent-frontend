@@ -9,6 +9,9 @@ import { BrowserRouter as Router, Route , Switch, withRouter} from 'react-router
 import Signup from './auth/SignUp'
 import Login from './auth/LogIn'
 import MyClimbs from './Containers/MyClimbs'
+import Map from './Components/Map'
+
+
 
 
 class App extends React.Component{
@@ -64,6 +67,7 @@ class App extends React.Component{
           <Route exact path="/search" render={() => <SearchForm user={this.state.user}/>}/>
           <Route exact path="/climbs" render= {() => <ClimbContainer token={localStorage.token} user={this.state.user}/>} />
           <Route exact path="/my-climbs"render={() => <MyClimbs token={localStorage.token} user= {this.state.user}/>}/>
+          <Route exact path="/map" component={Map}/>
         </div>
       </Switch>
       
