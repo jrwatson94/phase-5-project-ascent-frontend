@@ -16,7 +16,8 @@ class MyClimbs extends React.Component{
     renderClimbs = () => {
         let climbArray = this.props.my_climbs.map(climb => {
             let user_climb = climb.user_climbs.filter(user_climb => user_climb.user_id === parseInt(localStorage.user_id))
-            return <ClimbCard 
+            return <ClimbCard
+                key = {climb.id} 
                 token ={this.props.token} 
                 user={this.props.user} {...climb} 
                 completed={user_climb[0].completed} 

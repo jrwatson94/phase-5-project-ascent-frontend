@@ -24,7 +24,6 @@ export default class LogIn extends React.Component {
     }
 
     render(){
-        console.log(this.state)
         return (
             <div className="signup form-group login-div">
                 <form onSubmit = {this.localSubmitHandler}>

@@ -50,7 +50,7 @@ class ClimbCard extends React.Component{
 
     render(){
         return(
-            <div className="climb-card card float-right">
+            <div className="climb-card card float-left">
                 <img className="card-img-top climb-img" src={this.props.image}></img>
                 <div className="card-body">
                     <a href={this.props.url}><h4 className="card-title">{this.props.name}</h4></a>

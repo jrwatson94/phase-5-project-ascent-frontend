@@ -25,6 +25,11 @@ const climbsReducer = (state = {climbs: [], my_climbs: [], loading: false}, acti
                 ...state,
                 my_climbs: newClimbArray
             }
+        case "ADD_USER":
+            return {
+                ...state,
+                currentUser: action.user
+            }
 
         default:
             return state

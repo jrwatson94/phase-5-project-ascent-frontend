@@ -54,3 +54,45 @@ export const completeClimb = (userClimb) => {
 
   }
 }
+
+export const fetchUser = () => {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/users/${localStorage.user_id}`)
+    .then(r => r.json())
+    .then(user => {
+      dispatch({type: "ADD_USER", user: user})
+    })
+  }
+}
+
+export const updateUser = (userData) => {
+  console.log(userData)
+  return(dispatch) => {
+    const data = {
+      name: userData.name,
+      username: userData.username,
+      bio: userData.bio,
+      interests: userData.interests
+    }
+    fetch(`http://localhost:3000/users/${localStorage.user_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(r => r.json())
+    .then(data => {
+      dispatch({type: "UPDATE_USER", userData: data})
+    })
+  }
+}
+
+export const deleteUser = () => {
+  return(dispatch)=>{
+    fetch(`http://localhost:3000/users/${localStorage.user_id}`, {
+      method: "DELETE"
+    })
+  }
+}

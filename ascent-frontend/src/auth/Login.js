@@ -26,6 +26,9 @@ export default class login extends React.Component {
     render() {
         return (
             <div className="form-group login-div">
+                <div className="error-message text-center text-danger">
+                        <p>{this.props.errorMessage}</p>
+                </div>
                 <form className="login" onSubmit = {this.localSubmitHandler}> 
                     <Form.Group>
                         <Form.Control className="login-item" type ="text" name= "username" placeholder= "enter username" value= {this.state.username} onChange= {this.changeHandler}/> <br/>

@@ -13,7 +13,10 @@ export default class NavBar extends React.Component{
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <NavLink to="/" className="nav-link" href="#">Home</NavLink>
+                            <NavLink to="/" className="nav-link">Home</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/profile" className="nav-link">Profile</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/search">Search</NavLink>
@@ -28,7 +31,7 @@ export default class NavBar extends React.Component{
                             <NavLink className="nav-link" to="/map">Map</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/">Logout</a>
+                            <a className="nav-link" href="/logout">Logout</a>
                         </li>
                     </ul>
                 </div>

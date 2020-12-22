@@ -10,7 +10,7 @@ import Signup from './auth/SignUp'
 import Login from './auth/LogIn'
 import MyClimbs from './Containers/MyClimbs'
 import Map from './Components/Map'
-
+import Profile from './Components/Profile'
 
 
 
@@ -31,11 +31,13 @@ class App extends React.Component{
       })
       .then(r => r.json())
       .then(newUserObj => {
+        this.setLocalStorage(newUserObj)
         this.setState({user:newUserObj.user}
           , () => this.props.history.push('/climbs'))
-        localStorage.setItem("token", newUserObj.jwt)
-  
-      });
+      })
+      .catch(errors => {
+        console.log(errors)
+      })
   }
   
   loginHandler = (userLogin) => {
@@ -49,12 +51,34 @@ class App extends React.Component{
       })
       .then(r => r.json())
       .then(loggedInUser => {
-        localStorage.setItem("token", loggedInUser.jwt)
-        localStorage.setItem("user_id",loggedInUser.user.id)
+        this.setLocalStorage(loggedInUser)
+        console.log(loggedInUser)
         this.setState({user:loggedInUser.user}
           , () => this.props.history.push('/climbs')
           )
       })
+      .catch(errors => {
+        if (errors){
+          this.setState({
+            errorMessage: "Password or Username is Invalid"
+          })
+        }
+      })
+  }
+
+  setLocalStorage = (userObj) => {
+    localStorage.setItem("token", userObj.jwt)
+    localStorage.setItem("user_name", userObj.user.name)
+    localStorage.setItem("user_username", userObj.user.username)
+    localStorage.setItem("user_id",userObj.user.id)
+    localStorage.setItem("user_interests",userObj.user.interests)
+    localStorage.setItem("user_bio",userObj.user.bio)
+  }
+  logout = () => {
+    localStorage.clear()
+    return (
+      <Home />
+    )
   }
   render(){
     return(
@@ -62,12 +86,14 @@ class App extends React.Component{
         <div>
           <NavBar/>
           <Route exact path="/signup"render={() => <Signup submitHandler = {this.signupSubmitHandler}/>}/>
-          <Route exact path="/login" render={() => <Login loginHandler = {this.loginHandler}/>}/>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/search" render={() => <SearchForm user={this.state.user}/>}/>
-          <Route exact path="/climbs" render= {() => <ClimbContainer token={localStorage.token} user={this.state.user}/>} />
-          <Route exact path="/my-climbs"render={() => <MyClimbs token={localStorage.token} user= {this.state.user}/>}/>
-          <Route exact path="/map" component={Map}/>
+          <Route exact path="/login" render={() => <Login loginHandler = {this.loginHandler} errorMessage={this.state.errorMessage}/>}/>
+          <Route exact path="/" render={() => <Home />}/>
+          <Route exact path="/profile" render={() => localStorage.user_id ? <Profile /> : <Home />}/>
+          <Route exact path="/search" render={() => localStorage.user_id ? <SearchForm user={this.state.user}/> : <Home/>}/>
+          <Route exact path="/climbs" render= {() => localStorage.user_id ? <ClimbContainer token={localStorage.token} user={this.state.user}/> : <Home/>} />
+          <Route exact path="/my-climbs"render={() => localStorage.user_id ? <MyClimbs token={localStorage.token} user= {this.state.user}/> : <Home/>} />
+          <Route exact path="/map" render ={() => localStorage.user_id ? <Map/> : <Home/>}/>
+          <Route exact path ="/logout" render = {() => this.logout()}/>
         </div>
       </Switch>
       
