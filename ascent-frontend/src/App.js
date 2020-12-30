@@ -3,7 +3,6 @@ import React from 'react'
 import NavBar from './Components/NavBar'
 import ClimbContainer from './Containers/ClimbContainer'
 import SearchForm from './Components/SearchForm'
-import Footer from './Components/Footer'
 import Home from './Components/Home'
 import { BrowserRouter as Router, Route , Switch, withRouter} from 'react-router-dom'
 import Signup from './auth/SignUp'
@@ -11,6 +10,7 @@ import Login from './auth/LogIn'
 import MyClimbs from './Containers/MyClimbs'
 import Map from './Components/Map'
 import Profile from './Components/Profile'
+import ProfileEdit from './Components/ProfileEdit';
 
 
 
@@ -74,6 +74,7 @@ class App extends React.Component{
     localStorage.setItem("user_interests",userObj.user.interests)
     localStorage.setItem("user_bio",userObj.user.bio)
   }
+  
   logout = () => {
     localStorage.clear()
     return (
@@ -81,6 +82,7 @@ class App extends React.Component{
     )
   }
   render(){
+    console.log(localStorage)
     return(
       <Switch>
         <div>
@@ -89,6 +91,7 @@ class App extends React.Component{
           <Route exact path="/login" render={() => <Login loginHandler = {this.loginHandler} errorMessage={this.state.errorMessage}/>}/>
           <Route exact path="/" render={() => <Home />}/>
           <Route exact path="/profile" render={() => localStorage.user_id ? <Profile /> : <Home />}/>
+          <Route exact path="/profile/edit" render={() => localStorage.user_id ? <ProfileEdit /> : <Home />}/>
           <Route exact path="/search" render={() => localStorage.user_id ? <SearchForm user={this.state.user}/> : <Home/>}/>
           <Route exact path="/climbs" render= {() => localStorage.user_id ? <ClimbContainer token={localStorage.token} user={this.state.user}/> : <Home/>} />
           <Route exact path="/my-climbs"render={() => localStorage.user_id ? <MyClimbs token={localStorage.token} user= {this.state.user}/> : <Home/>} />
