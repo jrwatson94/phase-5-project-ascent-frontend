@@ -16,7 +16,6 @@ class SearchForm extends React.Component{
 
     renderSearchResults = (searchTerm) => {
         let input = this.state.userInput.toLowerCase()
-        console.log(this.state.currentClimbs)
         let filteredArray = this.state.currentClimbs.filter(climb => 
             climb[searchTerm].toLowerCase().includes(input) 
         )

@@ -20,7 +20,8 @@ class MyClimbs extends React.Component{
                 key = {climb.id} 
                 token ={this.props.token} 
                 user={this.props.user} {...climb} 
-                completed={user_climb[0].completed} 
+                completed={user_climb[0].completed}
+                review= {user_climb[0].review}
             />
         })
         return climbArray
@@ -31,6 +32,7 @@ class MyClimbs extends React.Component{
         return(
             <div className="container">
                 <h1>My Climbs</h1>
+                <hr></hr>
                 {this.renderClimbs()}
             </div>
         )

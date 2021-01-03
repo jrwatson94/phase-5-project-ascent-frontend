@@ -30,6 +30,9 @@ class Profile extends React.Component{
             submitted: true
         })
     }
+    bioInputValue = () => {
+        return this.state.bio ? this.state.bio : ""
+    }
     renderUserData = () => {
         console.log(localStorage)
         if (this.props.currentUser){
@@ -46,9 +49,7 @@ class Profile extends React.Component{
                         </div>
                     </div>
                     <button className="btn border btn-primary" type="Submit"> Save Profile {this.state.submitted ? ' ✅' : ""}</button><br></br>
-
                 </form>
-
             )
         }else{
             return <h5>Loading User Data...</h5>
