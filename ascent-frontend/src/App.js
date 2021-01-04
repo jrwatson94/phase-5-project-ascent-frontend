@@ -32,7 +32,7 @@ class App extends React.Component{
       .then(newUserObj => {
         this.setLocalStorage(newUserObj)
         this.setState({user:newUserObj.user}
-          , () => this.props.history.push('/profile'))
+          , () => this.props.history.push('/climbs'))
       })
       .catch(errors => {
         console.log(errors)
@@ -52,7 +52,7 @@ class App extends React.Component{
       .then(loggedInUser => {
         this.setLocalStorage(loggedInUser)
         this.setState({user:loggedInUser.user}
-          , () => this.props.history.push('/profile')
+          , () => this.props.history.push('/climbs')
           )
       })
       .catch(errors => {
@@ -90,6 +90,7 @@ class App extends React.Component{
           <Route exact path="/profile" render={() => localStorage.user_id ? <Profile /> : <Home />}/>
           <Route exact path="/profile/edit" render={() => localStorage.user_id ? <ProfileEdit /> : <Home />}/>
           <Route exact path="/search" render={() => localStorage.user_id ? <SearchForm user={this.state.user}/> : <Home/>}/>
+          <Route exact path="/climbs" render= {() => localStorage.user_id ? <ClimbContainer token={localStorage.token} user={this.state.user}/> : <Home/>} />
           <Route exact path="/my-climbs"render={() => localStorage.user_id ? <MyClimbs token={localStorage.token} user= {this.state.user}/> : <Home/>} />
           <Route exact path="/map" render ={() => localStorage.user_id ? <Map/> : <Home/>}/>
           <Route exact path ="/logout" render = {() => this.logout()}/>

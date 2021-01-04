@@ -185,6 +185,7 @@ class ClimbCard extends React.Component{
                     {this.renderCompleteButton()}
                     {this.state.completed ? <button onClick={this.openReviewModal} className="btn"><i className="far fa-edit"></i></button> : ""}
                     <br></br>
+                    <br></br>
                     
                     <button onClick={this.fetchReviewsAndRenderModal} className="btn">Reviews</button>
                 </div>

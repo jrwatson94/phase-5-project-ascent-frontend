@@ -20,7 +20,10 @@ export default class NavBar extends React.Component{
                             <NavLink to="/profile" className="nav-link">{localStorage.user_username}</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/search">Search Climbs</NavLink>
+                            <NavLink className="nav-link" to="/search">Search</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/climbs">All Climbs</NavLink>
                         </li>
                         
                         <li className="nav-item">
