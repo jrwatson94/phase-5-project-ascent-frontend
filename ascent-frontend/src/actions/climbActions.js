@@ -16,7 +16,6 @@ export const fetchMyClimbs = (user_id) => {
     fetch(`http://localhost:3000/users/${user_id}`)
         .then(r=> r.json())
         .then(data => {
-          console.log(data.climbs)
           dispatch({type: "ADD_MY_CLIMBS", my_climbs: data.climbs})
         })
   }
@@ -48,7 +47,6 @@ export const completeClimb = (userClimb) => {
     })
     .then( r=> r.json())
     .then(data => {
-      console.log(data)
       dispatch({type: "COMPLETE_CLIMB", climb: data})
     })
 
@@ -66,7 +64,6 @@ export const fetchUser = () => {
 }
 
 export const updateUser = (userData) => {
-  console.log(userData)
   return(dispatch) => {
     const data = {
       name: userData.name,

@@ -3,7 +3,6 @@ import {NavLink} from 'react-router-dom'
 
 class Home extends React.Component {
     renderButtons = () => {
-        console.log(localStorage)
         if (localStorage.user_id){
             return (
                 <div>

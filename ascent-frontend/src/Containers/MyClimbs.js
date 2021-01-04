@@ -21,7 +21,6 @@ class MyClimbs extends React.Component{
                 token ={this.props.token} 
                 user={this.props.user} {...climb} 
                 completed={user_climb[0].completed}
-                review= {user_climb[0].review}
             />
         })
         return climbArray

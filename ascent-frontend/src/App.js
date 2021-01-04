@@ -19,7 +19,6 @@ class App extends React.Component{
     user: null 
   }
   signupSubmitHandler = (newUser) => {
-    console.log(newUser)
     fetch('http://localhost:3000/users', {
       method: 'POST',
       headers: {
@@ -52,7 +51,6 @@ class App extends React.Component{
       .then(r => r.json())
       .then(loggedInUser => {
         this.setLocalStorage(loggedInUser)
-        console.log(loggedInUser)
         this.setState({user:loggedInUser.user}
           , () => this.props.history.push('/climbs')
           )
@@ -82,7 +80,6 @@ class App extends React.Component{
     )
   }
   render(){
-    console.log(localStorage)
     return(
       <Switch>
         <div>

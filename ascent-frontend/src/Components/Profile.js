@@ -22,7 +22,6 @@ class Profile extends React.Component{
     }
     submitHandler = (e) => {
         e.preventDefault()
-        console.log(this.state)
         localStorage.setItem("user_interests", this.state.interests)
         localStorage.setItem("user_bio",this.state.bio)
         this.props.updateUser(this.state)
@@ -34,7 +33,6 @@ class Profile extends React.Component{
         return this.state.bio ? this.state.bio : ""
     }
     renderUserData = () => {
-        console.log(localStorage)
         if (this.props.currentUser){
             return(
                 <form onSubmit={this.submitHandler}>

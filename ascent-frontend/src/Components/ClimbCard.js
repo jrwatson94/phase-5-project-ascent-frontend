@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {deleteClimb, completeClimb} from '../actions/climbActions'
 import Modal from 'react-modal'
+import Review from './Review'
 
 
 class ClimbCard extends React.Component{
@@ -9,11 +10,17 @@ class ClimbCard extends React.Component{
         climbAdded: false,
         data: "",
         completed: this.props.completed,
+        reviews: [],
         reviewModalOpen: false,
+        reviewsModalOpen: false,
+        reviewDeleted: false,
         reviewData: {
             title: "",
             stars: 1,
-            content: ""
+            content: "",
+            author: localStorage.user_name,
+            author_id: parseInt(localStorage.user_id),
+            
         }
     }
 
@@ -72,7 +79,7 @@ class ClimbCard extends React.Component{
             )
         }else {
             return (
-                <button onClick={this.addClickHandler} className="btn">{this.state.climbAdded ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>}</button>
+                <button onClick={this.addClickHandler} className="btn">{this.state.climbAdded ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}</button>
             )
         }
     }
@@ -82,16 +89,6 @@ class ClimbCard extends React.Component{
     }
     closeReviewModal = () => {
         this.setState({reviewModalOpen: false})
-    }
-
-    renderReview = () => {
-        return (
-            <div>
-                <p>{this.props.review.title}</p>
-                <p>Stars: {this.props.review.stars}</p>
-                <p>{this.props.review.content}</p>
-            </div>
-        )
     }
 
     reviewChangeHandler = (event) => {
@@ -126,6 +123,52 @@ class ClimbCard extends React.Component{
             console.log(errors)
         })
     }
+
+    fetchReviewsAndRenderModal = () => {
+        fetch(`http://localhost:3000/climbs/${this.props.id}/reviews`)
+        .then(r => r.json())
+        .then(reviews => {
+            this.setState({
+                reviews: reviews,
+                reviewsModalOpen: true
+            })
+        })
+    }
+    closeReviewsModal = () => {
+        this.setState({
+            reviewsModalOpen: false
+        })
+    }
+
+    renderReviewsContainer = () => {
+        const reviews = this.state.reviews.filter(review => review !== null)
+        if (reviews.length === 0){
+            return <p>No reviews for this route..</p>
+        }
+        else {
+            return(
+                <>
+                    <h4>{this.props.name}</h4>
+                    <div className="container">
+                        {reviews.map(review => <Review deleteReview={this.deleteReview}{...review}/>)}
+                    </div>
+                </>
+            )
+        }
+    }
+
+    deleteReview = (reviewId) => {
+        fetch(`http://localhost:3000/reviews/${reviewId}`, {
+            method: "DELETE"
+        })
+        .then(() => {
+            console.log("WORKING")
+            this.setState({
+                ...this.state,
+                reviews: this.state.reviews.filter(review => review.id !== reviewId)
+            })
+        })
+    }
     
     render(){
         return(
@@ -139,10 +182,18 @@ class ClimbCard extends React.Component{
                     <p>Difficulty: {this.props.difficulty}</p>
                     <p>Location: {this.props.state}, {this.props.climbing_area}</p>
                     {this.renderCompleteButton()}
-                    {this.state.completed ? <button onClick={this.openReviewModal} className="btn"><i class="far fa-edit"></i></button> : ""}
-                    {this.props.review ? this.renderReview() : null}
+                    {this.state.completed ? <button onClick={this.openReviewModal} className="btn"><i className="far fa-edit"></i></button> : ""}
+                    <br></br>
+                    
+                    <button onClick={this.fetchReviewsAndRenderModal} className="btn">Reviews</button>
                 </div>
             </div>
+            <Modal isOpen={this.state.reviewsModalOpen} style={this.customStyles()}>
+                <button className="btn" onClick = {this.closeReviewsModal}>X</button>
+                {this.renderReviewsContainer()}
+            </Modal>
+
+
             <Modal isOpen= {this.state.reviewModalOpen} style={this.customStyles()}>
                 <button className="btn" onClick = {this.closeReviewModal}>X</button>
                 <form onSubmit={this.reviewSubmitHandler}>
