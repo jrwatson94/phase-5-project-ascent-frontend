@@ -6,7 +6,7 @@ import logo from '../assets/logo.png'
 export default class NavBar extends React.Component{
     render(){
         return(
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow sticky-top">
                 <img className="ascent-logo" src={logo}></img>
                 <a className="navbar-nav ascent-text">
                     <NavLink to="/" className="nav-link">Ascent</NavLink>

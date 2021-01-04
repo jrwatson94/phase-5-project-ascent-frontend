@@ -33,7 +33,7 @@ class SearchForm extends React.Component{
     }
     render(){
         return(
-            <div>
+            <div className="container">
                 <form onSubmit={this.submitHandler}>
                     <div className="form-group">
                         <label>Search By: </label>
@@ -52,10 +52,9 @@ class SearchForm extends React.Component{
                         <input name="userInput" onChange={this.changeHandler} className="form-control"></input>
                     </div>
                 </form>
-                <div>
+                <div className="container">
                     {this.renderSearchResults(this.state.checkBox)}
                 </div>
-                
             </div>
         )
     }

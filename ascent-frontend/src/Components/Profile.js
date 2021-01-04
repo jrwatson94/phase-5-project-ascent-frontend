@@ -40,11 +40,11 @@ class Profile extends React.Component{
                     <div className="form-group profile-data border text-left">
                         <h3>Bio</h3>
                         <div className="profile-bio text-center border">
-                            <input onChange={this.changeHandler} name="bio" className="form-control" value={this.state.bio}></input>
+                            <textarea onChange={this.changeHandler} name="bio" className="form-control profile-form" value={this.state.bio}></textarea>
                         </div>
                         <h3>Interests</h3>
                         <div className="profile-bio text-center border">
-                            <input onChange={this.changeHandler} name="interests" className="form-control" value={this.state.interests}></input>
+                            <textarea onChange={this.changeHandler} name="interests" className="form-control profile-form" value={this.state.interests}></textarea>
                         </div>
                     </div>
                     <button className="btn border btn-primary" type="Submit"> Save Profile {this.state.submitted ? ' ✅' : ""}</button><br></br>

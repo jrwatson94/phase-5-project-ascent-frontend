@@ -20,6 +20,7 @@ class ClimbCard extends React.Component{
             content: "",
             author: localStorage.user_name,
             author_id: parseInt(localStorage.user_id),
+            climb_name: this.props.name
             
         }
     }
