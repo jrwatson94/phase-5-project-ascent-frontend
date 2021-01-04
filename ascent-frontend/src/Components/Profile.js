@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import { fetchUser,updateUser,deleteUser } from '../actions/climbActions'
+import MyClimbs from '../Containers/MyClimbs'
 
 
 class Profile extends React.Component{
@@ -60,11 +61,12 @@ class Profile extends React.Component{
                     <img className="profile-pic" src="https://icon-library.com/images/generic-profile-icon/generic-profile-icon-10.jpg"></img>
                     <h5>{this.props.currentUser ? this.props.currentUser.name : ""}</h5>
                     {this.renderUserData()}
-
                     <Link to="/logout">
                         <button onClick={this.props.deleteUser} className="btn btn-danger">Delete Account</button>
                     </Link>
                 </div>
+                <br></br>
+                <MyClimbs />
                 
 
             </div>

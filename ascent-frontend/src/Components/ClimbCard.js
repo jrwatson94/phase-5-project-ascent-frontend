@@ -158,14 +158,15 @@ class ClimbCard extends React.Component{
     }
 
     deleteReview = (reviewId) => {
+        let reviews;
+        reviews = this.state.reviews.filter(review => review !== null && review.id !== reviewId)
         fetch(`http://localhost:3000/reviews/${reviewId}`, {
             method: "DELETE"
         })
         .then(() => {
-            console.log("WORKING")
             this.setState({
                 ...this.state,
-                reviews: this.state.reviews.filter(review => review.id !== reviewId)
+                reviews: reviews
             })
         })
     }

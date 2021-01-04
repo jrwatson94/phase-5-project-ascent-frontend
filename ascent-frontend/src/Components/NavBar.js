@@ -17,7 +17,7 @@ export default class NavBar extends React.Component{
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <NavLink to="/profile" className="nav-link">Profile</NavLink>
+                            <NavLink to="/profile" className="nav-link">{localStorage.user_username}</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/search">Search</NavLink>
@@ -25,9 +25,7 @@ export default class NavBar extends React.Component{
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/climbs">All Climbs</NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/my-climbs">My Climbs</NavLink>
-                        </li>
+                        
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/map">Map</NavLink>
                         </li>
