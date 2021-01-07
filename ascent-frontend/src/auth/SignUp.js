@@ -27,7 +27,7 @@ export default class LogIn extends React.Component {
         return (
             <div className="login-page form-group login-div">
                 <h3>Welcome to <span style={{fontFamily: 'Play'}}><strong>Ascent</strong></span></h3>
-                <hr></hr>
+                <hr style={{backgroundColor: 'black'}}></hr>
 
                 <form onSubmit = {this.localSubmitHandler}>
                     <Form.Group>

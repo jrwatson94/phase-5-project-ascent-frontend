@@ -27,7 +27,7 @@ export default class login extends React.Component {
         return (
             <div className="login-page form-group login-div">
                 <h3>Welcome to <span style={{fontFamily: 'Play'}}><strong>Ascent</strong></span></h3>
-                <hr></hr>
+                <hr style={{backgroundColor: 'black'}}></hr>
                 <div className="error-message text-center text-danger">
                         <p>{this.props.errorMessage}</p>
                 </div>

@@ -23,7 +23,7 @@ class Home extends React.Component {
             return (
                 <>
                     <h1 className="text-center home-title">Ascent</h1>
-                    <hr></hr>
+                    <hr ></hr>
                     {this.renderCarousel()}
                     <div className="row bg-dark text-light">
                         <div className="col-5">
@@ -39,7 +39,7 @@ class Home extends React.Component {
             return (
                 <div className="login-page">
                     <h3>Welcome to <span style={{fontFamily: 'Play'}}><strong>Ascent</strong></span></h3>
-                <hr></hr>
+                    <hr style={{backgroundColor: 'black'}}></hr>
                     <button className="btn btn-primary mb-2 mt-2 home-button btn-light">
                         <NavLink to = "/login">Log In</NavLink>
                     </button>
