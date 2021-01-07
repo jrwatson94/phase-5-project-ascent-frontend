@@ -25,7 +25,9 @@ export default class login extends React.Component {
 
     render() {
         return (
-            <div className="form-group login-div">
+            <div className="login-page form-group login-div">
+                <h3>Welcome to <span style={{fontFamily: 'Play'}}><strong>Ascent</strong></span></h3>
+                <hr></hr>
                 <div className="error-message text-center text-danger">
                         <p>{this.props.errorMessage}</p>
                 </div>
@@ -33,7 +35,7 @@ export default class login extends React.Component {
                     <Form.Group>
                         <Form.Control className="login-item" type ="text" name= "username" placeholder= "enter username" value= {this.state.username} onChange= {this.changeHandler}/> <br/>
                         <Form.Control className="login-item"  type ="password" name= "password" placeholder= "enter password" value= {this.state.password} onChange= {this.changeHandler}/><br/>
-                        <Form.Control className="sign-up-button" type ="submit" value ="Log In"/><br/>
+                        <Form.Control className="sign-up-button btn btn-primary" type ="submit" value ="Log In"/><br/>
                     </Form.Group>
                 </form>
             </div>

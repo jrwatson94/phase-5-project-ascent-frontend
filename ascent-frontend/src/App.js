@@ -32,7 +32,7 @@ class App extends React.Component{
       .then(newUserObj => {
         this.setLocalStorage(newUserObj)
         this.setState({user:newUserObj.user}
-          , () => this.props.history.push('/'))
+          , () => this.props.history.push('/climbs'))
       })
       .catch(errors => {
         console.log(errors)
@@ -52,7 +52,7 @@ class App extends React.Component{
       .then(loggedInUser => {
         this.setLocalStorage(loggedInUser)
         this.setState({user:loggedInUser.user}
-          , () => this.props.history.push('/')
+          , () => this.props.history.push('/climbs')
           )
       })
       .catch(errors => {

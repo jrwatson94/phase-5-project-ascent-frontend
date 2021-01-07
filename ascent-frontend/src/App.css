@@ -216,5 +216,24 @@ hr {
   margin: auto;
 }
 
+.login-page{
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  margin-top: 4rem;
+  border: 1px solid black;
+  padding: 8rem;
+  border-radius: 10%;
+  box-shadow: 1px 2px black;
+  background-color: rgb(224, 224, 224);
+}
+
+.sign-up-button{
+  width: 50%;
+  margin: auto;
+}
+
+
+
 
 

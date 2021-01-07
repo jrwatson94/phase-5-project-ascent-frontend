@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchClimbs} from '../actions/climbActions'
 import Carousel from 'react-bootstrap/Carousel'
+import LogIn from '../auth/LogIn'
 
 class Home extends React.Component {
     state = {
@@ -36,12 +37,16 @@ class Home extends React.Component {
             )
         }else {
             return (
-                <div className="home-buttons-container d-flex justify-content-center">
-                    <button className="btn-light home-button">
-                        <NavLink to = "/signup">Create an Account</NavLink>
+                <div className="login-page">
+                    <h3>Welcome to <span style={{fontFamily: 'Play'}}><strong>Ascent</strong></span></h3>
+                <hr></hr>
+                    <button className="btn btn-primary mb-2 mt-2 home-button btn-light">
+                        <NavLink to = "/login">Log In</NavLink>
                     </button>
-                    <button className="btn-light home-button">
-                        <NavLink  to = "/login"> Sign In</NavLink>
+                    <br></br>
+                    
+                    <button className="btn btn-primary mb-2 mt-2 home-button btn-light">
+                        <NavLink to = "/signup">Create an Account</NavLink>
                     </button>
                 </div>
             )

@@ -25,13 +25,16 @@ export default class LogIn extends React.Component {
 
     render(){
         return (
-            <div className="signup form-group login-div">
+            <div className="login-page form-group login-div">
+                <h3>Welcome to <span style={{fontFamily: 'Play'}}><strong>Ascent</strong></span></h3>
+                <hr></hr>
+
                 <form onSubmit = {this.localSubmitHandler}>
                     <Form.Group>
                         <Form.Control type ="text" name= "name" placeholder= "enter name" value= {this.state.name} onChange= {this.changeHandler}/> <br/>
                         <Form.Control type ="text" name= "username" placeholder= "enter username" value= {this.state.username} onChange= {this.changeHandler}/> <br/>
                         <Form.Control type ="password" name= "password" placeholder= "enter password" value= {this.state.password} onChange= {this.changeHandler}/><br/>
-                        <Form.Control className="sign-up-button" type ="submit" value ="Sign Up"/><br/>
+                        <Form.Control className="sign-up-button btn btn-primary" type ="submit" value ="Sign Up"/><br/>
                     </Form.Group> 
                 </form>
             </div>
