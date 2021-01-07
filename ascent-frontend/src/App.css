@@ -206,9 +206,14 @@ hr {
 }
 
 .search-form-div{
-  border: 1px solid black;
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+.search-form-group{
+  border: 1px solid black;
+  width: 60%;
+  padding: 1rem;
+  margin: auto;
 }
 
 
