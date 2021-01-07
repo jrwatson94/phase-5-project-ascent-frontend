@@ -34,7 +34,7 @@ function BasicMap(){
             )}
             {selectedClimb && (
                 <InfoWindow 
-                    position={{lat: selectedClimb.lat, lng:selectedClimb.long}}
+                    position={{lat: selectedClimb.lat, lng: selectedClimb.long}}
                     onCloseClick={ () => {
                         setSelectedClimb(null);
                     }}

@@ -21,7 +21,8 @@ class Home extends React.Component {
         if (localStorage.user_id){
             return (
                 <>
-                    <h1 className="text-center home-title"><u>Ascent</u></h1>
+                    <h1 className="text-center home-title">Ascent</h1>
+                    <hr></hr>
                     {this.renderCarousel()}
                     <div className="row bg-dark text-light">
                         <div className="col-5">
@@ -91,23 +92,23 @@ class Home extends React.Component {
             </div>
         )
     }
-
+    
     renderReviews = () => {
         let reviewsArray = []
         if (this.state.reviews && this.state.reviews.length > 0){
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < 3; i++) {
+                const review = this.state.reviews.sample()
                 reviewsArray.push(
                     <div className="featured-review">
                         <div className="container">
-                            <h3>{this.state.reviews[i].climb_name}</h3>
+                            <h3>{review.climb_name}</h3>
                             <hr></hr>
-                            <h5>{this.state.reviews[i].title} ({this.state.reviews[i].stars} ★)</h5>
-                            <h6>By: {this.state.reviews[i].author}</h6>
-                            <p>{this.state.reviews[i].content}</p>
+                            <h5>{review.title} ({review.stars} ★)</h5>
+                            <h6>By: {review.author}</h6>
+                            <p>{review.content}</p>
                         </div>
                     </div>
                 )
-                
             }
         }
         return reviewsArray;
@@ -134,6 +135,10 @@ class Home extends React.Component {
 
     }
 }
+
+Array.prototype.sample = function(){
+    return this[Math.floor(Math.random()*this.length)];
+  }
 
 const msp = state => {
     return {

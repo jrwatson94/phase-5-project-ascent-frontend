@@ -17,10 +17,11 @@ body {
 }
 
 .climb-card {
-  height: 43rem;
+  height: 41rem;
   max-width: 30%;
   margin: 1%;
   box-shadow: 0 6px 6px rgba(0,0,0,0.1);
+  border: 1px solid black;
   
 }
 
@@ -114,7 +115,101 @@ hr {
 .profile-form{
   height: 5rem;
 }
+.climb-card-body{
+  background-color: rgb(199, 198, 198);
+  /* border: 1px solid black; */
+}
 
+.card-buttons{
+  height: 50%;
+}
+
+.card .card-buttons{
+  visibility: hidden;
+}
+
+.card:hover .card-buttons{
+  visibility:visible;
+}
+
+.card-btn:hover{
+  transform: scale(1.15);
+
+}
+
+#complete-btn{
+  justify-self: flex-end;
+}
+#review-btn{
+  margin-top: 13rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dropdown-icon{
+  margin-left: 1rem;
+}
+
+.caret-off::before {
+  display: none;
+}
+.caret-off::after {
+  display: none;
+}
+
+.ellipsis{
+  font-size: 1.5rem;
+  padding: 0px;
+}
+
+.btn-group{
+  float: right;
+}
+
+.check-mark{
+  background-color: white;
+  padding: 3px;
+  padding-top: 7px;
+  border-radius: 10%;
+  margin: 0px;
+}
+
+.complete-marker {
+  margin: 0px;
+  padding: 0px;
+}
+
+.fa-check-circle {
+  font-size: 1.5rem;
+  margin-top: 9px;
+}
+
+.ellipsis{
+  font-size: 1.5rem;
+}
+
+.drop-btn:hover{
+  transform: scale(1.15);
+}
+
+.profile-div{
+  margin-top: 1rem;
+}
+
+.profile{
+  border: 1px solid grey;
+  border-radius: 10%;
+}
+
+.form-check{
+  margin: 1rem;
+}
+
+.search-form-div{
+  border: 1px solid black;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 
 
 

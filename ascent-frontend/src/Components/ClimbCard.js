@@ -38,7 +38,6 @@ class ClimbCard extends React.Component{
         }
     }
 
-
     addClickHandler = () => {
         let data ={
             user_id: localStorage.user_id,
@@ -73,14 +72,27 @@ class ClimbCard extends React.Component{
     renderCompleteButton = () => {
         if (this.props.completed !== undefined){
             return (
-                <>
-                <button onClick={this.deleteClickHandler} className="btn">❌</button>
-                <button onClick={this.completeClickHandler} className="btn">{this.state.completed ? "✅" : "Mark as Complete"}</button>
-                </>
+                <div>
+
+                    {this.state.completed ? <span class="check-mark"style={{color: "green"}}><i class="fas fa-check-circle"></i></span> : <span class="check-mark"style={{color: "black"}}><i class="fas fa-check-circle"></i></span>}
+                    <div className="btn-group">
+                        <button className="drop-btn btn btn-sm dropdown-toggle caret-off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="ellipsis fas fa-ellipsis-h"></i>
+                        </button>
+                        <div className="dropdown-menu dropdown-menu-left">
+                            {this.state.completed ? "" : 
+                                <a onClick={this.completeClickHandler} id="complete-btn" className="dropdown-item">Mark Complete  <span className="dropdown-icon">✅</span></a>
+                            }
+                            
+                            <a onClick={this.deleteClickHandler} className="dropdown-item">Remove Climb  <span className="dropdown-icon"> ❌</span></a>
+                        </div>
+                    </div>
+                    <br></br>
+                </div>
             )
         }else {
             return (
-                <button onClick={this.addClickHandler} className="btn">{this.state.climbAdded ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}</button>
+                <button onClick={this.addClickHandler} className="btn">{this.state.climbAdded ? <i style={{color:"red"}} className="fas fa-heart"></i> : <i className="far fa-heart"></i>}</button>
             )
         }
     }
@@ -177,18 +189,19 @@ class ClimbCard extends React.Component{
             <>
             <div className="climb-card card float-left">
                 <img className="card-img-top climb-img" src={this.props.image}></img>
-                <div className="card-body">
+                <div className="card-body climb-card-body">
                     <a href={this.props.url}><h4 className="card-title">{this.props.name}</h4></a>
-                    <h5 className="rating">Rating: <strong>{this.props.rating}</strong></h5>
+                    <h5 className="rating">Rating: <strong>{this.props.rating} ★</strong></h5>
                     <p>Type: {this.props.climb_type}</p>
                     <p>Difficulty: {this.props.difficulty}</p>
                     <p>Location: {this.props.state}, {this.props.climbing_area}</p>
-                    {this.renderCompleteButton()}
-                    {this.state.completed ? <button onClick={this.openReviewModal} className="btn"><i className="far fa-edit"></i></button> : ""}
-                    <br></br>
-                    <br></br>
-                    
-                    <button onClick={this.fetchReviewsAndRenderModal} className="btn">Reviews</button>
+                    <div className="card-img-overlay card-buttons">
+                        {this.renderCompleteButton()}
+
+
+                        {this.state.completed ? <button onClick={this.openReviewModal} id="review-btn" className="btn card-btn">Add Review  <i className="far fa-edit"></i></button> : ""}
+                    </div>
+                    <button onClick={this.fetchReviewsAndRenderModal} className="btn card-btn">Reviews</button>
                 </div>
             </div>
             <Modal isOpen={this.state.reviewsModalOpen} style={this.customStyles()}>
